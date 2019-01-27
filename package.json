@@ -4,7 +4,14 @@
   "description": "TODO REST API",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server",
+    "test:coverage": "NODE_ENV=test nyc --reporter=text mocha $(find test -name '*.spec.js')",
+    "test:unit": "NODE_ENV=test mocha $(find test/unit -name '*.spec.js')",
+    "test:integration": "NODE_ENV=test mocha $(find test/integration -name '*.spec.js')",
+    "test": "mocha $(find test -name '*.spec.js')",
+    "lint": "eslint $(find test -name '*.spec.js')",
+    "lint:fix": "eslint $(find test -name '*.spec.js') --fix"
+
   },
   "repository": {
     "type": "git",
@@ -37,6 +44,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
     "sinon": "^7.2.3",
     "sinon-mongoose": "^2.2.1"
   }
